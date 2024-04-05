@@ -25,6 +25,13 @@ export default function RootMenu() {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
+          <Link href="/budget" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Budget
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
           <Link href="/accounts" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               Comptes
