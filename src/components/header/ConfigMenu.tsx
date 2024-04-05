@@ -8,7 +8,7 @@ config.autoAddCss = true;
 export default function ConfigMenu() {
   return (
     <div>
-      <Button size="icon">
+      <Button size="icon" variant="outline">
         <FontAwesomeIcon icon={faGear} />
       </Button>
     </div>

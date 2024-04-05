@@ -1,6 +1,7 @@
 import BudgetCard from "@/components/card/dashboard/BudgetCard";
 import TransactionCard from "@/components/card/dashboard/TransactionsCard";
 import AccountsCards from "@/components/card/dashboard/AccountsCards";
+import InvestCard from "@/components/card/dashboard/InvestCard";
 
 export default function Dashboard() {
   return (
@@ -15,9 +16,11 @@ export default function Dashboard() {
         <div className="col-span-2">
           <AccountsCards />
         </div>
-        </div>
         <div className="col-span-2">Graphique</div>
-      
+        <div>
+          <InvestCard />
+        </div>
+      </div>
     </main>
   );
 }

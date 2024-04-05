@@ -12,7 +12,7 @@ export default function Header() {
       <div className="m-auto justify-center">
         <RootMenu />
       </div>
-      <div>
+      <div className="mr-2">
         <ModeToggle />
       </div>
       <div>
