@@ -1,7 +1,17 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
+import prisma from "@/db/db";
 
-export function GET(req: NextRequest, res: NextResponse) {
-  if (req.method === 'GET') {
-    return NextResponse.json({ message: 'I am a transaction' });
-  } 
+export async function GET(req: NextRequest, res: NextResponse) {
+  const result = await prisma.transactions.findMany({
+    orderBy: [
+      {
+        date: 'desc',
+      },
+      {
+        description: 'desc',
+      },
+    ],
+  });
+
+  return NextResponse.json(result);
 }
