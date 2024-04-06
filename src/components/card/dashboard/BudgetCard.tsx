@@ -18,7 +18,7 @@ export default function BudgetCard() {
   }
 
   useEffect(() => {
-    fetch("/api/v1/budgets")
+    fetch("/api/v1/dashboard/budgets")
       .then((response) => response.json())
       .then((data) => setBudgetCard(data));
   }, []);
