@@ -2,18 +2,17 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/db/db";
 
 export async function GET(req: NextRequest, res: NextResponse) {
-  const result = await prisma.transactions.findMany({
+  const result = await prisma.categories.findMany({
     orderBy: [
       {
-        date: 'desc',
-      },
-      {
-        description: 'desc',
+        category: 'asc',
       },
     ],
-    include: {
-      Category: true
-    }
+    where: {
+      ID: {
+        lt: 1000, // lt signifie "less than" (inférieur à)
+      },
+    },
   });
 
   return NextResponse.json(result);

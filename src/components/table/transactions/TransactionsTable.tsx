@@ -12,6 +12,7 @@ import {
 import { useState, useEffect } from "react";
 import ModifyDialog from "./ModifyDialog";
 import DeleteButton from "./DeleteButton";
+import { Badge } from "@/components/ui/badge";
 
 export default function TransactionsTable() {
   const [transactionsTable, setTransactionsTable] = useState<ITransactions[]>(
@@ -19,20 +20,40 @@ export default function TransactionsTable() {
   );
 
   interface ITransactions {
-    ID: number;
+    ID: string;
     date: string;
     amount: number;
     import_category: string;
-    Category: string;
     description: string;
-    Account: string;
+    transaction_type: string | null;
+    id_category: number | null;
+    id_account: number | null;
+    account: string;
+    Category: {
+      ID: string;
+      category: string;
+      description: string;
+      color: string;
+      icon: string;
+      parent_category_id: number | null;
+    };
   }
 
   useEffect(() => {
-    fetch("/api/v1/transactions")
-      .then((response) => response.json())
-      .then((data) => setTransactionsTable(data));
+    fetchTransactions();
   }, []);
+
+  const handleTransactionUpdated = () => {
+    fetchTransactions();
+  };
+
+  const fetchTransactions = async () => {
+    const response = await fetch("/api/v1/transactions");
+    if (response.ok) {
+      const data = await response.json();
+      setTransactionsTable(data);
+    }
+  };
 
   return (
     <Table>
@@ -53,10 +74,25 @@ export default function TransactionsTable() {
             <TableCell>{transactionLine.date}</TableCell>
             <TableCell>{transactionLine.amount}</TableCell>
             <TableCell>{transactionLine.import_category}</TableCell>
-            <TableCell>{transactionLine.Category}</TableCell>
+            <TableCell>
+              <Badge
+                variant="outline"
+                className={`bg-opacity-75`}
+                style={{ backgroundColor: transactionLine.Category.color }}
+              >
+                {transactionLine.Category.category}
+              </Badge>
+            </TableCell>
             <TableCell>{transactionLine.description}</TableCell>
-            <TableCell>{transactionLine.Account}</TableCell>
-            <TableCell><ModifyDialog transactionLine={transactionLine} />&nbsp;<DeleteButton /></TableCell>
+            <TableCell>{transactionLine.account}</TableCell>
+            <TableCell>
+              <ModifyDialog
+                transactionLine={transactionLine}
+                onTransactionUpdated={handleTransactionUpdated}
+              />
+              &nbsp;
+              <DeleteButton />
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

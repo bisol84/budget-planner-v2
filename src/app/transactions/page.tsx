@@ -6,7 +6,7 @@ export default function Transactions() {
 
   return (
     <main className="m-4">
-      <div>
+      <div className="flex justify-end">
         <UploadDialog />
       </div>
       <div>
