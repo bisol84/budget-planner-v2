@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table";
 import { useState, useEffect } from "react";
 import ModifyDialog from "./ModifyDialog";
-import DeleteButton from "./DeleteButton";
+import DeleteButton from "../../button/DeleteButton";
 import { Badge } from "@/components/ui/badge";
 
 export default function TransactionsTable() {
@@ -43,17 +43,23 @@ export default function TransactionsTable() {
     fetchTransactions();
   }, []);
 
-  const handleTransactionUpdated = () => {
-    fetchTransactions();
+  const handleTransactionUpdated = async () => {
+    await fetchTransactions();
   };
 
   const fetchTransactions = async () => {
     const response = await fetch("/api/v1/transactions");
     if (response.ok) {
       const data = await response.json();
-      setTransactionsTable(data);
+      await setTransactionsTable(data);
     }
   };
+
+  function formatDate(date: any) {
+    const newDate = new Date(date);
+    const formattedDate = newDate.toLocaleDateString("fr-CH", { day: '2-digit', month: '2-digit', year: 'numeric' });
+    return formattedDate
+  }
 
   const handleDeleteTransaction = async(transactionID: string) => {
     const response = await fetch(`/api/v1/transaction/delete/${transactionID}`, {
@@ -80,7 +86,7 @@ export default function TransactionsTable() {
       <TableBody>
         {transactionsTable.map((transactionLine) => (
           <TableRow key={transactionLine.ID}>
-            <TableCell>{transactionLine.date}</TableCell>
+            <TableCell>{formatDate(transactionLine.date)}</TableCell>
             <TableCell>{transactionLine.amount}</TableCell>
             <TableCell>{transactionLine.import_category}</TableCell>
             <TableCell>

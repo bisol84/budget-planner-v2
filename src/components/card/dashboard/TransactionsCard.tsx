@@ -14,11 +14,11 @@ export default function TransactionCard() {
   const [transactionCard, setTransactionCard] = useState<ITransaction>();
 
   interface ITransaction {
-    message: string;
+    amount: number;
   }
 
   useEffect(() => {
-    fetch("/api/v1/transactions")
+    fetch("/api/v1/dashboard/transactions")
       .then((response) => response.json())
       .then((data) => setTransactionCard(data));
   }, []);
@@ -27,10 +27,10 @@ export default function TransactionCard() {
     <Card className="min-w-64 min-h-48">
       <CardHeader>
         <CardTitle>Transactions</CardTitle>
-        <CardDescription></CardDescription>
+        <CardDescription>Transactions du mois</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>{transactionCard?.message}</p>
+        <p>{transactionCard?.amount} CHF</p>
       </CardContent>
       <CardFooter>
         <p></p>

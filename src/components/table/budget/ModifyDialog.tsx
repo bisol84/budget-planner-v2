@@ -10,37 +10,33 @@ import {
 } from "@/components/ui/dialog";
 import ModifyButton from "../../button/ModifyButton";
 import { Button } from "@/components/ui/button";
-import CategorySelect from "./CategorySelect";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
-interface ITransaction {
+interface IBudget {
   ID: string;
-  import_category: string;
-  Category: {
-    ID: string;
-    category: string;
-  };
+  amount: number;
 }
 
-interface ModifyDialogProps {
-  transactionLine: ITransaction;
-  onTransactionUpdated: any;
+interface ModifyBudgetDialogProps {
+  budgetLine: IBudget;
+  onBudgetUpdated: any;
 }
 
-export default function ModifyDialog({ transactionLine, onTransactionUpdated }: ModifyDialogProps) {
+export default function ModifyDialog({ budgetLine, onBudgetUpdated }: ModifyBudgetDialogProps) {
 
   const submitFormModifyRecord = async (e: any) => {
     e.preventDefault()
     const formURL = e.target.action;
     const formData = new FormData(e.target);
-    const formCategory = formData.get("selectCategory")
-    formData.set('transactionID', transactionLine.ID)
+    const formBudget = formData.get("inputBudget")
+    formData.set('budgetID', budgetLine.ID)
 
     const response = await fetch(formURL, {
       method: "PATCH",
       body: formData,
     })
-    .then(await onTransactionUpdated());
+    .then(await onBudgetUpdated());
   }
 
   return (
@@ -50,12 +46,12 @@ export default function ModifyDialog({ transactionLine, onTransactionUpdated }: 
       </DialogTrigger>
       <DialogContent>
         <DialogHeader className="flex flex-col gap-1">
-          Modifier la transaction
+          Modifier le budget
         </DialogHeader>
-        <form name="updateTransaction" onSubmit={submitFormModifyRecord} action="/api/v1/transaction/update">
+        <form name="updateBudget" onSubmit={submitFormModifyRecord} action="/api/v1/budget/update">
           <DialogDescription>
-            <Label htmlFor="selectCategory">Catégorie</Label>
-            <CategorySelect selectedValue={transactionLine.Category.ID} />
+            <Label htmlFor="inputBudget">Budget</Label>
+            <Input name="inputBudget" defaultValue={budgetLine.amount} />
           </DialogDescription>
           <DialogFooter>
             <DialogClose asChild>

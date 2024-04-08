@@ -10,11 +10,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState, useEffect } from "react";
+import ModifyDialog from "./ModifyDialog";
 
 export default function BudgetTable() {
   const [budgetTable, setBudgetTable] = useState<IBudget[]>([]);
 
-  interface IBudget {
+  interface IBudgetData {
     ID: number;
     category: string;
     parent_category_id: number;
@@ -25,10 +26,20 @@ export default function BudgetTable() {
   }
 
   useEffect(() => {
-    fetch("/api/v1/budgets")
-      .then((response) => response.json())
-      .then((data) => setBudgetTable(data));
+    fetchBudget()
   }, []);
+
+  const handleBudgetUpdated = () => {
+    fetchBudget();
+  };
+
+  const fetchBudget = async () => {
+    const response = await fetch("/api/v1/budgets");
+    if (response.ok) {
+      const data = await response.json();
+      await setBudgetTable(data);
+    }
+  };
 
   return (
     <Table>
@@ -38,15 +49,31 @@ export default function BudgetTable() {
           <TableHead>Budget</TableHead>
           <TableHead>Transaction</TableHead>
           <TableHead>Restant</TableHead>
+          <TableHead></TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {budgetTable.map((budgetLine) => (
+        {budgetTable.map((budgetLine: IBudgetData) => (
           <TableRow key={budgetLine.ID}>
             <TableCell>{budgetLine.category}</TableCell>
             <TableCell>{budgetLine.amount}</TableCell>
             <TableCell>{budgetLine.transactions_amount}</TableCell>
-            <TableCell>{budgetLine.amount - budgetLine.transactions_amount}</TableCell>
+            <TableCell
+              style={{
+                color:
+                  budgetLine.amount - budgetLine.transactions_amount < 0
+                    ? "red"
+                    : "green",
+              }}
+            >
+              {budgetLine.amount - budgetLine.transactions_amount}
+            </TableCell>
+            <TableCell>
+            <ModifyDialog
+                budgetLine={budgetLine}
+                onBudgetUpdated={handleBudgetUpdated}
+              />
+              </TableCell>
           </TableRow>
         ))}
       </TableBody>
