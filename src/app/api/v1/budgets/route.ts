@@ -16,7 +16,7 @@ export async function GET(req: Request, res: Response) {
           SUM(CASE WHEN c.category = 'A classer' AND t.amount > 0 THEN -t.amount ELSE t.amount END) AS "transactions_amount"
         FROM Categories c
         LEFT OUTER JOIN Budgets b on b.id_category = c.ID and b.start_date <= ${currentDate} and b.end_date > ${currentDate}
-        LEFT OUTER JOIN Transactions t on t.id_category = c.ID 
+        LEFT OUTER JOIN Transactions t on t.id_category = c.ID
         WHERE c.ID < 1000
         GROUP BY
           c.category

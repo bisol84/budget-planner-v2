@@ -55,6 +55,15 @@ export default function TransactionsTable() {
     }
   };
 
+  const handleDeleteTransaction = async(transactionID: string) => {
+    const response = await fetch(`/api/v1/transaction/delete/${transactionID}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      fetchTransactions();
+    }
+  }
+
   return (
     <Table>
       <TableHeader>
@@ -91,7 +100,7 @@ export default function TransactionsTable() {
                 onTransactionUpdated={handleTransactionUpdated}
               />
               &nbsp;
-              <DeleteButton />
+              <DeleteButton onClick={() => handleDeleteTransaction(transactionLine.ID)} />
             </TableCell>
           </TableRow>
         ))}
