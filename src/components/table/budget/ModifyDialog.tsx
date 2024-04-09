@@ -36,7 +36,10 @@ export default function ModifyDialog({ budgetLine, onBudgetUpdated }: ModifyBudg
       method: "PATCH",
       body: formData,
     })
-    .then(await onBudgetUpdated());
+
+    if (response.ok) {
+      onBudgetUpdated();
+    }
   }
 
   return (

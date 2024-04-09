@@ -27,21 +27,26 @@ interface ModifyDialogProps {
   onTransactionUpdated: any;
 }
 
-export default function ModifyDialog({ transactionLine, onTransactionUpdated }: ModifyDialogProps) {
-
+export default function ModifyDialog({
+  transactionLine,
+  onTransactionUpdated,
+}: ModifyDialogProps) {
   const submitFormModifyRecord = async (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
     const formURL = e.target.action;
     const formData = new FormData(e.target);
-    const formCategory = formData.get("selectCategory")
-    formData.set('transactionID', transactionLine.ID)
+    const formCategory = formData.get("selectCategory");
+    formData.set("transactionID", transactionLine.ID);
 
     const response = await fetch(formURL, {
       method: "PATCH",
       body: formData,
-    })
-    .then(await onTransactionUpdated());
-  }
+    });
+
+    if (response.ok) {
+      onTransactionUpdated();
+    }
+  };
 
   return (
     <Dialog>
@@ -52,7 +57,11 @@ export default function ModifyDialog({ transactionLine, onTransactionUpdated }: 
         <DialogHeader className="flex flex-col gap-1">
           Modifier la transaction
         </DialogHeader>
-        <form name="updateTransaction" onSubmit={submitFormModifyRecord} action="/api/v1/transaction/update">
+        <form
+          name="updateTransaction"
+          onSubmit={submitFormModifyRecord}
+          action="/api/v1/transaction/update"
+        >
           <DialogDescription>
             <Label htmlFor="selectCategory">Catégorie</Label>
             <CategorySelect selectedValue={transactionLine.Category.ID} />

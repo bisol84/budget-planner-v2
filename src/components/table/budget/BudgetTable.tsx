@@ -13,7 +13,7 @@ import { useState, useEffect } from "react";
 import ModifyDialog from "./ModifyDialog";
 
 export default function BudgetTable() {
-  const [budgetTable, setBudgetTable] = useState<IBudget[]>([]);
+  const [budgetTable, setBudgetTable] = useState<IBudgetData[]>([]);
 
   interface IBudgetData {
     ID: number;
@@ -37,9 +37,25 @@ export default function BudgetTable() {
     const response = await fetch("/api/v1/budgets");
     if (response.ok) {
       const data = await response.json();
-      await setBudgetTable(data);
+      setBudgetTable(data);
     }
   };
+
+  function calculateTotalAmount(budgetLine: any) {
+    if (budgetLine.transactions_amount < 0) {
+      return (budgetLine.amount + budgetLine.transactions_amount).toFixed(2)
+    } else {
+      return (budgetLine.amount - budgetLine.transactions_amount).toFixed(2)
+    }
+  }
+
+  function formatTransactionAmount(transactions_amount: number) {
+    if (transactions_amount == null) {
+      return 0.00
+    } else {
+      return transactions_amount.toFixed(2)
+    }
+  }
 
   return (
     <Table>
@@ -56,17 +72,10 @@ export default function BudgetTable() {
         {budgetTable.map((budgetLine: IBudgetData) => (
           <TableRow key={budgetLine.ID}>
             <TableCell>{budgetLine.category}</TableCell>
-            <TableCell>{budgetLine.amount}</TableCell>
-            <TableCell>{budgetLine.transactions_amount}</TableCell>
-            <TableCell
-              style={{
-                color:
-                  budgetLine.amount - budgetLine.transactions_amount < 0
-                    ? "red"
-                    : "green",
-              }}
-            >
-              {budgetLine.amount - budgetLine.transactions_amount}
+            <TableCell>{(budgetLine.amount).toFixed(2)}</TableCell>
+            <TableCell>{formatTransactionAmount(budgetLine.transactions_amount)}</TableCell>
+            <TableCell>
+              {calculateTotalAmount(budgetLine)}
             </TableCell>
             <TableCell>
             <ModifyDialog

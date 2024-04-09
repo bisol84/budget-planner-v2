@@ -51,7 +51,7 @@ export default function TransactionsTable() {
     const response = await fetch("/api/v1/transactions");
     if (response.ok) {
       const data = await response.json();
-      await setTransactionsTable(data);
+      setTransactionsTable(data);
     }
   };
 
