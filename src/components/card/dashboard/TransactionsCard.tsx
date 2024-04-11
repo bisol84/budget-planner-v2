@@ -9,12 +9,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function TransactionCard() {
   const [transactionCard, setTransactionCard] = useState<ITransaction>();
 
   interface ITransaction {
     amount: number;
+    total: any;
+    up: any;
+    down: any;
   }
 
   useEffect(() => {
@@ -30,10 +35,13 @@ export default function TransactionCard() {
         <CardDescription>Transactions du mois</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>{transactionCard?.amount} CHF</p>
+        <span>{transactionCard?.total._sum.amount.toFixed(2)} CHF</span>
       </CardContent>
       <CardFooter>
-        <p></p>
+        <div className="flex w-full">
+          <span className="text-green-500"><FontAwesomeIcon icon={faArrowUp} />&nbsp;{transactionCard?.up._sum.amount.toFixed(2)}</span>
+          <span className="text-red-500 m-auto"><FontAwesomeIcon icon={faArrowDown} />&nbsp;{transactionCard?.down._sum.amount.toFixed(2)}</span>
+        </div>
       </CardFooter>
     </Card>
   );

@@ -2,8 +2,13 @@ import prisma from "@/db/db";
 import { Prisma } from "@prisma/client";
 import dayjs from 'dayjs'
 
-export async function GET(req: Request, res: Response) {
-  const currentDate = dayjs().unix();
+interface Params {
+  budgetDate: Date;
+}
+
+export async function GET(req: Request, { params }: { params: Params }, res: Response) {
+  // const currentDate = firstDayOfMonth(params.budgetDate);
+  const currentDate = dayjs(params.budgetDate).unix();
 
   const result = await prisma.$queryRaw(
     Prisma.sql`
