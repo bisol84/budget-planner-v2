@@ -4,8 +4,6 @@ import prisma from "@/db/db";
 export async function PATCH(req: NextRequest, res: NextResponse) {
   const formData = await req.formData();
 
-  console.log(formData);
-
   const result = await prisma.transactions.update({
     where: {
       ID: parseInt(formData.get("transactionID") as string),

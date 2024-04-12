@@ -36,7 +36,6 @@ export default function ModifyDialog({
 }: ModifyDialogProps) {
   const submitFormModifyRecord = async (e: any) => {
     e.preventDefault();
-    console.log(transactionLine);
     const formURL = e.target.action;
     const formData = new FormData(e.target);
     const formCategory = formData.get("selectCategory");
