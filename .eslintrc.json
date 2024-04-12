@@ -1,3 +1,29 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@tailwindcss/recommended",
+    "prettier"
+  ],
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "plugin": [
+    "tailwindcss/recommended",
+    "prettier/recommended",
+    "@typescript-eslint/recommended",
+    "@typescript-eslint"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js"],
+      "parser": "@typescript-eslint/parser"
+    },
+    {
+      "files": ["*.html", "*.blade.php"],
+      "parser": "@angular-eslint/template-parser"
+    }
+  ]
 }
