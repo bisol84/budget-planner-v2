@@ -37,6 +37,9 @@ export default function TransactionsTable() {
       icon: string;
       parent_category_id: number | null;
     };
+    Account: {
+      name: string;
+    };
   }
 
   useEffect(() => {
@@ -57,18 +60,25 @@ export default function TransactionsTable() {
 
   function formatDate(date: any) {
     const newDate = new Date(date);
-    const formattedDate = newDate.toLocaleDateString("fr-CH", { day: '2-digit', month: '2-digit', year: 'numeric' });
-    return formattedDate
+    const formattedDate = newDate.toLocaleDateString("fr-CH", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+    return formattedDate;
   }
 
-  const handleDeleteTransaction = async(transactionID: string) => {
-    const response = await fetch(`/api/v1/transaction/delete/${transactionID}`, {
-      method: "DELETE",
-    });
+  const handleDeleteTransaction = async (transactionID: string) => {
+    const response = await fetch(
+      `/api/v1/transaction/delete/${transactionID}`,
+      {
+        method: "DELETE",
+      }
+    );
     if (response.ok) {
       fetchTransactions();
     }
-  }
+  };
 
   return (
     <Table>
@@ -87,7 +97,7 @@ export default function TransactionsTable() {
         {transactionsTable.map((transactionLine) => (
           <TableRow key={transactionLine.ID}>
             <TableCell>{formatDate(transactionLine.date)}</TableCell>
-            <TableCell>{transactionLine.amount}</TableCell>
+            <TableCell>{transactionLine.amount.toFixed(2)}</TableCell>
             <TableCell>{transactionLine.import_category}</TableCell>
             <TableCell>
               <Badge
@@ -99,14 +109,16 @@ export default function TransactionsTable() {
               </Badge>
             </TableCell>
             <TableCell>{transactionLine.description}</TableCell>
-            <TableCell>{transactionLine.account}</TableCell>
+            <TableCell>{transactionLine.Account?.name}</TableCell>
             <TableCell>
               <ModifyDialog
                 transactionLine={transactionLine}
                 onTransactionUpdated={handleTransactionUpdated}
               />
               &nbsp;
-              <DeleteButton onClick={() => handleDeleteTransaction(transactionLine.ID)} />
+              <DeleteButton
+                onClick={() => handleDeleteTransaction(transactionLine.ID)}
+              />
             </TableCell>
           </TableRow>
         ))}

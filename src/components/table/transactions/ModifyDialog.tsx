@@ -10,8 +10,10 @@ import {
 } from "@/components/ui/dialog";
 import ModifyButton from "../../button/ModifyButton";
 import { Button } from "@/components/ui/button";
-import CategorySelect from "./CategorySelect";
 import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import CategorySelect from "./CategorySelect";
+import AccountSelect from "./AccountSelect";
 
 interface ITransaction {
   ID: string;
@@ -65,6 +67,24 @@ export default function ModifyDialog({
           <DialogDescription>
             <Label htmlFor="selectCategory">Catégorie</Label>
             <CategorySelect selectedValue={transactionLine.Category.ID} />
+            <div className="gap-3">&nbsp;</div>
+            <Label htmlFor="transactionType">Type</Label>
+            <RadioGroup defaultValue="outcome" name="transactionType">
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="income" id="income" />
+                <Label htmlFor="income">Entrant</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="outcome" id="outcome" />
+                <Label htmlFor="outcome">Sortant</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="transfert" id="transfert" />
+                <Label htmlFor="transfert">Transfert</Label>
+              </div>
+            </RadioGroup>
+            <Label htmlFor="selectAccount">Compte</Label>
+            <AccountSelect />
           </DialogDescription>
           <DialogFooter>
             <DialogClose asChild>
