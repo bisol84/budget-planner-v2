@@ -16,7 +16,7 @@ interface Account {
   name: string;
 }
 
-export default function AccountSelect() {
+export default function AccountSelect({ selectedValue }) {
   const [accounts, setAccount] = useState<Account[]>([]);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function AccountSelect() {
   }, []);
 
   return (
-    <Select name="selectAccount">
+    <Select name="selectAccount" defaultValue={selectedValue?.toString()}>
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Compte" />
       </SelectTrigger>

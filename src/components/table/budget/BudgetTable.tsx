@@ -12,7 +12,7 @@ import {
 import { useState, useEffect } from "react";
 import ModifyDialog from "./ModifyDialog";
 
-export default function BudgetTable( {budgetDate} ) {
+export default function BudgetTable({ budgetDate }) {
   const [budgetTable, setBudgetTable] = useState<IBudgetData[]>([]);
 
   interface IBudgetData {
@@ -26,7 +26,7 @@ export default function BudgetTable( {budgetDate} ) {
   }
 
   useEffect(() => {
-    fetchBudget(budgetDate)
+    fetchBudget(budgetDate);
   }, [budgetDate]);
 
   const handleBudgetUpdated = () => {
@@ -43,17 +43,17 @@ export default function BudgetTable( {budgetDate} ) {
 
   function calculateTotalAmount(budgetLine: any) {
     if (budgetLine.transactions_amount < 0) {
-      return (budgetLine.amount + budgetLine.transactions_amount).toFixed(2)
+      return (budgetLine.amount + budgetLine.transactions_amount).toFixed(2);
     } else {
-      return (budgetLine.amount - budgetLine.transactions_amount).toFixed(2)
+      return (budgetLine.amount - budgetLine.transactions_amount).toFixed(2);
     }
   }
 
   function formatTransactionAmount(transactions_amount: number) {
     if (transactions_amount == null) {
-      return 0.00
+      return 0.0;
     } else {
-      return transactions_amount.toFixed(2)
+      return transactions_amount.toFixed(2);
     }
   }
 
@@ -72,17 +72,25 @@ export default function BudgetTable( {budgetDate} ) {
         {budgetTable.map((budgetLine: IBudgetData) => (
           <TableRow key={budgetLine.ID}>
             <TableCell>{budgetLine.category}</TableCell>
-            <TableCell>{(budgetLine.amount).toFixed(2)}</TableCell>
-            <TableCell>{formatTransactionAmount(budgetLine.transactions_amount)}</TableCell>
+            <TableCell>{budgetLine.amount.toFixed(2)}</TableCell>
             <TableCell>
+              {formatTransactionAmount(budgetLine.transactions_amount)}
+            </TableCell>
+            <TableCell
+              className={
+                calculateTotalAmount(budgetLine) < 0
+                  ? "text-red-500"
+                  : "text-green-500"
+              }
+            >
               {calculateTotalAmount(budgetLine)}
             </TableCell>
             <TableCell>
-            <ModifyDialog
+              <ModifyDialog
                 budgetLine={budgetLine}
                 onBudgetUpdated={handleBudgetUpdated}
               />
-              </TableCell>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

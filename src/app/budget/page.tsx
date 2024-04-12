@@ -1,14 +1,14 @@
-"use client"
+"use client";
 import BudgetTable from "@/components/table/budget/BudgetTable";
-import { DatePicker } from "@/components/date/DatePicker";
+import DatePicker from "@/components/date/DatePicker";
 import { useState } from "react";
 
 export default function Budget() {
-  const [date, setDate] = useState<Date>(new Date())
+  const [date, setDate] = useState<Date>(new Date());
 
   return (
     <main className="m-4">
-      <div>
+      <div className="mb-2">
         <DatePicker date={date} handleUpdate={setDate} />
       </div>
       <div>

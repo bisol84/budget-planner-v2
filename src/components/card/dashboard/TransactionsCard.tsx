@@ -39,8 +39,14 @@ export default function TransactionCard() {
       </CardContent>
       <CardFooter>
         <div className="flex w-full">
-          <span className="text-green-500"><FontAwesomeIcon icon={faArrowUp} />&nbsp;{transactionCard?.up._sum.amount.toFixed(2)}</span>
-          <span className="text-red-500 m-auto"><FontAwesomeIcon icon={faArrowDown} />&nbsp;{transactionCard?.down._sum.amount.toFixed(2)}</span>
+          <span className="text-green-500">
+            <FontAwesomeIcon icon={faArrowUp} />
+            &nbsp;{transactionCard?.up._sum.amount.toFixed(2)} CHF
+          </span>
+          <span className="text-red-500 m-auto">
+            <FontAwesomeIcon icon={faArrowDown} />
+            &nbsp;{transactionCard?.down._sum.amount.toFixed(2)} CHF
+          </span>
         </div>
       </CardFooter>
     </Card>

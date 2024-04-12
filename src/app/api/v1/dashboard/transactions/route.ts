@@ -3,24 +3,23 @@ import prisma from "@/db/db";
 import dayjs from "dayjs";
 
 export async function GET(req: NextRequest, res: NextResponse) {
-  const aggregatedTransactions = await getAggregatedTransactions()
-  console.log(aggregatedTransactions.total._sum.amount)
+  const aggregatedTransactions = await getAggregatedTransactions();
   return NextResponse.json(aggregatedTransactions);
 }
 
-async function getAggregatedTransactions(){
+async function getAggregatedTransactions() {
   const [total, up, down] = await Promise.all([
     getTransactionsTotal(),
     getTransactionsUp(),
     getTransactionsDown(),
-  ])
+  ]);
 
   return {
     total,
     up,
     down,
   };
-} 
+}
 
 async function getTransactionsTotal() {
   return await prisma.transactions.aggregate({
@@ -28,6 +27,9 @@ async function getTransactionsTotal() {
       date: {
         gte: new Date(dayjs().startOf("month").day()),
         lte: new Date(),
+      },
+      transaction_type: {
+        not: "transfert",
       },
     },
     _sum: {
@@ -43,9 +45,12 @@ async function getTransactionsUp() {
         gte: new Date(dayjs().startOf("month").day()),
         lte: new Date(),
       },
+      transaction_type: {
+        not: "transfert",
+      },
       amount: {
-        gte: 0
-      }
+        gte: 0,
+      },
     },
     _sum: {
       amount: true,
@@ -60,9 +65,12 @@ async function getTransactionsDown() {
         gte: new Date(dayjs().startOf("month").day()),
         lte: new Date(),
       },
+      transaction_type: {
+        not: "transfert",
+      },
       amount: {
-        lte: 0
-      }
+        lte: 0,
+      },
     },
     _sum: {
       amount: true,

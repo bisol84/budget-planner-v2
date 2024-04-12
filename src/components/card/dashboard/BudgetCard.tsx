@@ -14,7 +14,7 @@ export default function BudgetCard() {
   const [budgetCard, setBudgetCard] = useState<IBudget>();
 
   interface IBudget {
-    message: string;
+    total: number;
   }
 
   useEffect(() => {
@@ -27,10 +27,10 @@ export default function BudgetCard() {
     <Card className="min-w-64 min-h-48">
       <CardHeader>
         <CardTitle>Budget</CardTitle>
-        <CardDescription>Budget net</CardDescription>
+        <CardDescription>Budget net du mois</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>{budgetCard?.message}</p>
+        <p>{budgetCard?.total.toFixed(2)} CHF</p>
       </CardContent>
       <CardFooter>
         <p></p>

@@ -18,6 +18,7 @@ import AccountSelect from "./AccountSelect";
 interface ITransaction {
   ID: string;
   import_category: string;
+  transaction_type: string;
   Category: {
     ID: string;
     category: string;
@@ -35,6 +36,7 @@ export default function ModifyDialog({
 }: ModifyDialogProps) {
   const submitFormModifyRecord = async (e: any) => {
     e.preventDefault();
+    console.log(transactionLine);
     const formURL = e.target.action;
     const formData = new FormData(e.target);
     const formCategory = formData.get("selectCategory");
@@ -69,7 +71,10 @@ export default function ModifyDialog({
             <CategorySelect selectedValue={transactionLine.Category.ID} />
             <div className="gap-3">&nbsp;</div>
             <Label htmlFor="transactionType">Type</Label>
-            <RadioGroup defaultValue="outcome" name="transactionType">
+            <RadioGroup
+              defaultValue={transactionLine.transaction_type}
+              name="transactionType"
+            >
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="income" id="income" />
                 <Label htmlFor="income">Entrant</Label>
@@ -84,7 +89,7 @@ export default function ModifyDialog({
               </div>
             </RadioGroup>
             <Label htmlFor="selectAccount">Compte</Label>
-            <AccountSelect />
+            <AccountSelect selectedValue={transactionLine.Account?.ID} />
           </DialogDescription>
           <DialogFooter>
             <DialogClose asChild>
