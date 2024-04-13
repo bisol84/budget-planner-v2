@@ -6,11 +6,14 @@ export async function GET(req: NextRequest, res: NextResponse) {
   const transactionsTotal = (await getTransactionsTotal())._sum.amount;
   const budgetTotal = (await getBudgetTotal())._sum.amount;
 
-  const total = budgetTotal - transactionsTotal;
-
-  return NextResponse.json({
-    total: total,
-  });
+  if (transactionsTotal && budgetTotal) {
+    const total = budgetTotal - transactionsTotal;
+    return NextResponse.json({
+      total: total,
+    });
+  } else {
+    return NextResponse.json({ total: 0 });
+  }
 }
 
 async function getTransactionsTotal() {

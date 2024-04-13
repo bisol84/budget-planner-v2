@@ -11,7 +11,7 @@ export async function PATCH(req: NextRequest, res: NextResponse) {
     data: {
       id_category: parseInt(formData.get("selectCategory") as string),
       id_account: parseInt(formData.get("selectAccount") as string),
-      transaction_type: formData.get("transactionType"),
+      transaction_type: formData.get("transactionType") as string,
     },
   });
 

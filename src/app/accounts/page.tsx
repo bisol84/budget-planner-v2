@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function Accounts() {
-  const [accountCard, setAccountCard] = useState([]);
+  const [accountCard, setAccountCard] = useState<any[]>([]);
 
   useEffect(() => {
     fetchAccount();
