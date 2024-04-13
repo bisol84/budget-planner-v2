@@ -35,17 +35,17 @@ export default function TransactionCard() {
         <CardDescription>Transactions du mois</CardDescription>
       </CardHeader>
       <CardContent>
-        <span>{transactionCard?.total._sum.amount.toFixed(2)} CHF</span>
+        <span>{transactionCard?.total._sum.amount?.toFixed(2)} CHF</span>
       </CardContent>
       <CardFooter>
         <div className="flex w-full">
           <span className="text-green-500">
             <FontAwesomeIcon icon={faArrowUp} />
-            &nbsp;{transactionCard?.up._sum.amount.toFixed(2)} CHF
+            &nbsp;{transactionCard?.up._sum.amount?.toFixed(2)} CHF
           </span>
           <span className="text-red-500 m-auto">
             <FontAwesomeIcon icon={faArrowDown} />
-            &nbsp;{transactionCard?.down._sum.amount.toFixed(2)} CHF
+            &nbsp;{transactionCard?.down._sum.amount?.toFixed(2)} CHF
           </span>
         </div>
       </CardFooter>

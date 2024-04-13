@@ -28,8 +28,8 @@ async function getTransactionsTotal() {
         gte: new Date(dayjs().startOf("month").day()),
         lte: new Date(),
       },
-      transaction_type: {
-        not: "transfert",
+      NOT: {
+        transaction_type: "transfert",
       },
     },
     _sum: {
@@ -45,8 +45,8 @@ async function getTransactionsUp() {
         gte: new Date(dayjs().startOf("month").day()),
         lte: new Date(),
       },
-      transaction_type: {
-        not: "transfert",
+      NOT: {
+        transaction_type: "transfert",
       },
       amount: {
         gte: 0,
@@ -65,8 +65,8 @@ async function getTransactionsDown() {
         gte: new Date(dayjs().startOf("month").day()),
         lte: new Date(),
       },
-      transaction_type: {
-        not: "transfert",
+      NOT: {
+        transaction_type: "transfert",
       },
       amount: {
         lte: 0,
