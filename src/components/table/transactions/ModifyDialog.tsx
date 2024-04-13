@@ -73,6 +73,7 @@ export default function ModifyDialog({
             <RadioGroup
               defaultValue={transactionLine.transaction_type}
               name="transactionType"
+              className="flex"
             >
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="income" id="income" />

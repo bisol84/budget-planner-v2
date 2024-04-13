@@ -16,7 +16,7 @@ export async function GET(
 
   const result = await prisma.$queryRaw(
     Prisma.sql`
-        SELECT 
+        SELECT
           c.ID,
           c.category,
           c.parent_category_id,
@@ -32,5 +32,6 @@ export async function GET(
           c.category
       `
   );
+
   return Response.json(result);
 }

@@ -25,10 +25,10 @@ export default function Dashboard() {
         <div className="col-span-2">
           <AccountsCards />
         </div>
-        <div className="col-span-2">Graphique</div>
+        {/* <div className="col-span-2">Graphique</div>
         <div>
           <InvestCard />
-        </div>
+        </div> */}
       </div>
     </main>
   );
