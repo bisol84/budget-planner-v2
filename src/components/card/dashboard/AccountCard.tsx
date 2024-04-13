@@ -8,29 +8,20 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useState, useEffect } from "react";
 
-export default function AccountCard() {
-  const [accountCard, setAccountCard] = useState<IAccount>();
-
-  interface IAccount {
-    message: string;
-  }
-
-  useEffect(() => {
-    fetch("/api/v1/budgets")
-      .then((response) => response.json())
-      .then((data) => setAccountCard(data));
-  }, []);
-
+export default function AccountCard({
+  accountName,
+  accountDescription,
+  accountType,
+}) {
   return (
     <Card className="min-w-64 min-h-48">
       <CardHeader>
-        <CardTitle>Compte 1</CardTitle>
-        <CardDescription>Compte 1</CardDescription>
+        <CardTitle>{accountName}</CardTitle>
+        <CardDescription>{accountType}</CardDescription>
       </CardHeader>
       <CardContent className="">
-        <span className="text-3xl font-semibold">{accountCard?.message}</span>
+        <span className="text-3xl font-semibold">{accountDescription}</span>
       </CardContent>
       <CardFooter>
         <p></p>

@@ -111,14 +111,15 @@ export default function TransactionsTable() {
             <TableCell>{transactionLine.description}</TableCell>
             <TableCell>{transactionLine.Account?.name}</TableCell>
             <TableCell>
-              <ModifyDialog
-                transactionLine={transactionLine}
-                onTransactionUpdated={handleTransactionUpdated}
-              />
-              &nbsp;
-              <DeleteButton
-                onClick={() => handleDeleteTransaction(transactionLine.ID)}
-              />
+              <div className="flex gap-x-5">
+                <ModifyDialog
+                  transactionLine={transactionLine}
+                  onTransactionUpdated={handleTransactionUpdated}
+                />
+                <DeleteButton
+                  onClick={() => handleDeleteTransaction(transactionLine.ID)}
+                />
+              </div>
             </TableCell>
           </TableRow>
         ))}

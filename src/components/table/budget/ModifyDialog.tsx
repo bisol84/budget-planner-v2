@@ -23,24 +23,26 @@ interface ModifyBudgetDialogProps {
   onBudgetUpdated: any;
 }
 
-export default function ModifyDialog({ budgetLine, onBudgetUpdated }: ModifyBudgetDialogProps) {
-
+export default function ModifyDialog({
+  budgetLine,
+  onBudgetUpdated,
+}: ModifyBudgetDialogProps) {
   const submitFormModifyRecord = async (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
     const formURL = e.target.action;
     const formData = new FormData(e.target);
-    const formBudget = formData.get("inputBudget")
-    formData.set('budgetID', budgetLine.ID)
+    const formBudget = formData.get("inputBudget");
+    formData.set("budgetID", budgetLine.ID);
 
     const response = await fetch(formURL, {
       method: "PATCH",
       body: formData,
-    })
+    });
 
     if (response.ok) {
       onBudgetUpdated();
     }
-  }
+  };
 
   return (
     <Dialog>
@@ -51,7 +53,11 @@ export default function ModifyDialog({ budgetLine, onBudgetUpdated }: ModifyBudg
         <DialogHeader className="flex flex-col gap-1">
           Modifier le budget
         </DialogHeader>
-        <form name="updateBudget" onSubmit={submitFormModifyRecord} action="/api/v1/budget/update">
+        <form
+          name="updateBudget"
+          onSubmit={submitFormModifyRecord}
+          action="/api/v1/budget/update"
+        >
           <DialogDescription>
             <Label htmlFor="inputBudget">Budget</Label>
             <Input name="inputBudget" defaultValue={budgetLine.amount} />

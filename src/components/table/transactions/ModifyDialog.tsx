@@ -53,7 +53,7 @@ export default function ModifyDialog({
 
   return (
     <Dialog>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <ModifyButton />
       </DialogTrigger>
       <DialogContent>
