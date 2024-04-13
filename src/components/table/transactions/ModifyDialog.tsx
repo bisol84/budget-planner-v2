@@ -53,7 +53,7 @@ export default function ModifyDialog({
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
+      <DialogTrigger>
         <ModifyButton />
       </DialogTrigger>
       <DialogContent>
@@ -92,10 +92,12 @@ export default function ModifyDialog({
           </DialogDescription>
           <DialogFooter>
             <DialogClose asChild>
-              <Button>Fermer</Button>
+              <Button variant="outline">Fermer</Button>
             </DialogClose>
             <DialogClose asChild>
-              <Button type="submit">Envoyer</Button>
+              <Button type="submit" variant="outline">
+                Envoyer
+              </Button>
             </DialogClose>
           </DialogFooter>
         </form>
