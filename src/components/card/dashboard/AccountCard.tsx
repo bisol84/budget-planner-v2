@@ -9,11 +9,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+interface IAccount {
+  accountName: string;
+  accountDescription: string;
+  accountType: string;
+}
+
 export default function AccountCard({
   accountName,
   accountDescription,
   accountType,
-}) {
+}: IAccount) {
   return (
     <Card className="min-w-64 min-h-48">
       <CardHeader>

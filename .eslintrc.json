@@ -4,12 +4,6 @@
     "browser": true,
     "es2021": true
   },
-  "plugin": [
-    "tailwindcss/recommended",
-    "prettier/recommended",
-    "@typescript-eslint/recommended",
-    "@typescript-eslint"
-  ],
   "parser": "@typescript-eslint/parser",
   "overrides": [
     {
