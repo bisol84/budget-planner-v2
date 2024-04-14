@@ -1,5 +1,4 @@
 import prisma from "@/db/db";
-import { Prisma } from "@prisma/client";
 import dayjs from "dayjs";
 
 interface Params {
@@ -16,8 +15,7 @@ export async function GET(
   const currentDateUnix = dayjs(params.budgetDate).unix();
   const currentDate = dayjs(params.budgetDate);
 
-  const result = await prisma.$queryRaw(
-    Prisma.sql`
+  const result = await prisma.$queryRaw`
         SELECT
           c.ID,
           c.category,
@@ -32,8 +30,6 @@ export async function GET(
         WHERE c.ID < 1000
         GROUP BY
           c.category
-      `
-  );
-
+      `;
   return Response.json(result);
 }
