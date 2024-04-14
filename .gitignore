@@ -113,7 +113,7 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
-.env
+# .env  # Removed because this can bee in the app
 .env.development.local
 .env.test.local
 .env.production.local
