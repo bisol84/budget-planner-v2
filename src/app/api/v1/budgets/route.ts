@@ -1,5 +1,4 @@
 import prisma from "@/db/db";
-import { Prisma } from "@prisma/client";
 import dayjs from "dayjs";
 
 export const dynamic = "force-dynamic";
