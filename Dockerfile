@@ -16,7 +16,6 @@ RUN \
   fi
 
 # Copy & Run Prisma
-COPY .env ./.env
 COPY prisma ./prisma
 RUN npx prisma generate
 # RUN rm -rf prisma
