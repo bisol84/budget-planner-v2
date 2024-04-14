@@ -25,6 +25,7 @@ RUN npx prisma generate
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /.env ./env
 COPY . .
 
 # Next.js collects completely anonymous telemetry data about general usage.
