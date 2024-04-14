@@ -17,15 +17,17 @@ RUN \
 
 # Copy & Run Prisma
 COPY prisma ./prisma
-RUN npx prisma generate
-RUN npx prisma migrate deploy
-# RUN rm -rf prisma
 
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# Copy & Run Prisma
+RUN npx prisma generate
+RUN npx prisma migrate deploy
+# RUN rm -rf prisma
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
