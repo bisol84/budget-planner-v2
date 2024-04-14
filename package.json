@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "lint:debug": "eslint ./src --debug",
-    "lint:fix": "eslint ./src --fix",
-    "postinstall": "prisma generate"
+    "lint:fix": "eslint ./src --fix"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
