@@ -16,6 +16,7 @@ RUN \
   fi
 
 # Copy & Run Prisma
+COPY .env /app/.env
 COPY prisma ./prisma
 RUN npx prisma generate
 # RUN rm -rf prisma
@@ -30,8 +31,6 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
-
-
 
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
@@ -62,8 +61,10 @@ RUN chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Prisma
+# Prisma & Env
 # COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
+COPY --from=builder /app/.env ./
+
 
 USER nextjs
 
