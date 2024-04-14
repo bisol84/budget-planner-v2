@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 interface IAccount {
-  ID: number;
+  ID: string;
   name: string;
   description: string;
   type: string;
@@ -43,6 +43,7 @@ export default function AccountsCards() {
           {accountCard.map((account) => (
             <AccountCard
               key={account.ID}
+              accountID={account.ID}
               accountName={account.name}
               accountDescription={account.description}
               accountType={account.type}

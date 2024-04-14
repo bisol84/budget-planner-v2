@@ -13,12 +13,14 @@ interface IAccount {
   accountName: string;
   accountDescription: string;
   accountType: string;
+  accountID: string;
 }
 
 export default function AccountCard({
   accountName,
   accountDescription,
   accountType,
+  accountID,
 }: IAccount) {
   return (
     <Card className="min-w-64 min-h-56">
@@ -29,9 +31,7 @@ export default function AccountCard({
       <CardContent className="">
         <span>{accountDescription}</span>
       </CardContent>
-      <CardFooter>
-        <p></p>
-      </CardFooter>
+      <CardFooter></CardFooter>
     </Card>
   );
 }

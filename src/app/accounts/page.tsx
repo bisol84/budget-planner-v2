@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function Accounts() {
   const [accountCard, setAccountCard] = useState<any[]>([]);
@@ -24,15 +24,19 @@ export default function Accounts() {
 
   return (
     <main className="m-4">
-      <div className="flex gap-4">
-        {accountCard.map((account) => (
-          <AccountCard
-            key={account.ID}
-            accountName={account.name}
-            accountDescription={account.description}
-            accountType={account.type}
-          />
-        ))}
+      <div className="flex gap-4 relative">
+        <div>
+          {accountCard.map((account) => (
+            <AccountCard
+              key={account.ID}
+              accountID={account.ID}
+              accountName={account.name}
+              accountDescription={account.description}
+              accountType={account.type}
+            />
+          ))}
+        </div>
+        <div>{/* dialog modify */}</div>
       </div>
     </main>
   );
