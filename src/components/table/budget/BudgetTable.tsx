@@ -12,8 +12,8 @@ import {
 import { useState, useEffect } from "react";
 import ModifyDialog from "./ModifyDialog";
 
-interface IBudgetData {
-  ID: number;
+export interface IBudgetData {
+  ID: string;
   category: string;
   parent_category_id: number;
   amount: number;
@@ -22,7 +22,7 @@ interface IBudgetData {
   transactions_amount: number;
 }
 
-export default function BudgetTable({ budgetDate }) {
+export default function BudgetTable({ budgetDate }: { budgetDate: Date }) {
   const [budgetTable, setBudgetTable] = useState<IBudgetData[]>([]);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function BudgetTable({ budgetDate }) {
     fetchBudget(budgetDate);
   };
 
-  const fetchBudget = async (budgetDate) => {
+  const fetchBudget = async (budgetDate: Date) => {
     const response = await fetch(`/api/v1/budgets/${budgetDate}`);
     if (response.ok) {
       const data = await response.json();

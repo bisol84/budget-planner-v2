@@ -8,13 +8,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 interface IAccount {
-  message: string;
-  map: any;
-  account: any;
+  ID: number;
+  name: string;
+  description: string;
+  type: string;
 }
 
 export default function AccountsCards() {
-  const [accountCard, setAccountCard] = useState([]);
+  const [accountCard, setAccountCard] = useState<IAccount[]>([]);
   const [current, setCurrent] = useState(0);
 
   const previous = () => setCurrent(current - 1);

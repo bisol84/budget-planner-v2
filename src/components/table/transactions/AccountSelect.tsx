@@ -16,7 +16,11 @@ interface Account {
   name: string;
 }
 
-export default function AccountSelect({ selectedValue }) {
+export default function AccountSelect({
+  selectedValue,
+}: {
+  selectedValue: string;
+}) {
   const [accounts, setAccount] = useState<Account[]>([]);
 
   useEffect(() => {

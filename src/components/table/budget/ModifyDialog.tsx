@@ -12,14 +12,10 @@ import ModifyButton from "../../button/ModifyButton";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-
-interface IBudget {
-  ID: string;
-  amount: number;
-}
+import type { IBudgetData } from "./BudgetTable";
 
 interface ModifyBudgetDialogProps {
-  budgetLine: IBudget;
+  budgetLine: IBudgetData;
   onBudgetUpdated: any;
 }
 

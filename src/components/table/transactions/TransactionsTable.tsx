@@ -14,33 +14,34 @@ import ModifyDialog from "./ModifyDialog";
 import DeleteButton from "../../button/DeleteButton";
 import { Badge } from "@/components/ui/badge";
 
+export interface ITransactions {
+  ID: string;
+  date: string;
+  amount: number;
+  import_category: string;
+  description: string;
+  transaction_type: string;
+  id_category: number | null;
+  id_account: number | null;
+  account: string;
+  Category: {
+    ID: string;
+    category: string;
+    description: string;
+    color: string;
+    icon: string;
+    parent_category_id: number | null;
+  };
+  Account: {
+    ID: string;
+    name: string;
+  };
+}
+
 export default function TransactionsTable() {
   const [transactionsTable, setTransactionsTable] = useState<ITransactions[]>(
     []
   );
-
-  interface ITransactions {
-    ID: string;
-    date: string;
-    amount: number;
-    import_category: string;
-    description: string;
-    transaction_type: string | null;
-    id_category: number | null;
-    id_account: number | null;
-    account: string;
-    Category: {
-      ID: string;
-      category: string;
-      description: string;
-      color: string;
-      icon: string;
-      parent_category_id: number | null;
-    };
-    Account: {
-      name: string;
-    };
-  }
 
   useEffect(() => {
     fetchTransactions();

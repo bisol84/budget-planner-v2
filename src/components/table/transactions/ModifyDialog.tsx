@@ -14,19 +14,10 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import CategorySelect from "./CategorySelect";
 import AccountSelect from "./AccountSelect";
-
-interface ITransaction {
-  ID: string;
-  import_category: string;
-  transaction_type: string;
-  Category: {
-    ID: string;
-    category: string;
-  };
-}
+import type { ITransactions } from "./TransactionsTable";
 
 interface ModifyDialogProps {
-  transactionLine: ITransaction;
+  transactionLine: ITransactions;
   onTransactionUpdated: any;
 }
 

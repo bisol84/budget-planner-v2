@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { useState, useEffect } from "react";
 
-export default function BudgetCard({ budgetDate }) {
+export default function BudgetCard({ budgetDate }: { budgetDate: Date }) {
   const [budgetCard, setBudgetCard] = useState<IBudget>();
 
   interface IBudget {
