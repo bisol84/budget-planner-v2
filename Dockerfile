@@ -16,7 +16,7 @@ RUN \
   fi
 
 # Copy & Run Prisma
-COPY .env /app/.env
+COPY .env ./.env
 COPY prisma ./prisma
 RUN npx prisma generate
 # RUN rm -rf prisma
@@ -25,7 +25,6 @@ RUN npx prisma generate
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /.env ./env
 COPY . .
 
 # Next.js collects completely anonymous telemetry data about general usage.
@@ -64,8 +63,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 # Prisma & Env
 # COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
-COPY --from=builder /app/.env ./
-
 
 USER nextjs
 
