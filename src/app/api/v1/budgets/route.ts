@@ -7,8 +7,7 @@ export const dynamic = "force-dynamic";
 export async function GET(req: Request, res: Response) {
   const currentDate = dayjs().unix();
 
-  const result = await prisma.$queryRaw(
-    Prisma.sql`
+  const result = await prisma.$queryRaw`
         SELECT 
           c.ID,
           c.category,
@@ -23,7 +22,6 @@ export async function GET(req: Request, res: Response) {
         WHERE c.ID < 1000
         GROUP BY
           c.category
-      `
-  );
+      `;
   return Response.json(result);
 }
