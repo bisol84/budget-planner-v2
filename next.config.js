@@ -1,3 +1,12 @@
 module.exports = {
-  output: 'standalone'
-}
+  output: "standalone",
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/dashboard",
+        permanent: true,
+      },
+    ];
+  },
+};
