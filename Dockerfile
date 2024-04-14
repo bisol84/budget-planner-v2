@@ -18,6 +18,7 @@ RUN \
 # Copy & Run Prisma
 COPY prisma ./prisma
 RUN npx prisma generate
+RUN npx prisma migrate deploy
 # RUN rm -rf prisma
 
 # Rebuild the source code only when needed
