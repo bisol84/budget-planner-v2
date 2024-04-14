@@ -51,15 +51,17 @@ export default function UploadDialog() {
           onSubmit={submitFormAddCSV}
           action="/api/v1/upload/csv"
         >
-          <DialogDescription>
-            <input
-              accept=".csv"
-              type="file"
-              name="file"
-              onChange={handleFileChange}
-              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-            ></input>
-          </DialogDescription>
+          <div className="grid gap-4 py-4">
+            <DialogDescription>
+              <input
+                accept=".csv"
+                type="file"
+                name="file"
+                onChange={handleFileChange}
+                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+              ></input>
+            </DialogDescription>
+          </div>
           <DialogFooter>
             <DialogClose asChild>
               <Button>Fermer</Button>

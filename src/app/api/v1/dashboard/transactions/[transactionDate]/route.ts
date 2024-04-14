@@ -54,7 +54,6 @@ async function getTransactionsTotal(startOfMonth: Date, endOfMonth: Date) {
       amount: true,
     },
   });
-  console.log(result);
   const totalAmount = result._sum.amount ? result._sum.amount : 0;
   return totalAmount;
 }

@@ -55,8 +55,10 @@ export default function ModifyDialog({
           action="/api/v1/budget/update"
         >
           <DialogDescription>
-            <Label htmlFor="inputBudget">Budget</Label>
-            <Input name="inputBudget" defaultValue={budgetLine.amount} />
+            <div className="grid gap-4 py-4">
+              <Label htmlFor="inputBudget">Budget</Label>
+              <Input name="inputBudget" defaultValue={budgetLine.amount} />
+            </div>
           </DialogDescription>
           <DialogFooter>
             <DialogClose asChild>

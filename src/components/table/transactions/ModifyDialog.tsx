@@ -57,30 +57,31 @@ export default function ModifyDialog({
           action="/api/v1/transaction/update"
         >
           <DialogDescription>
-            <Label htmlFor="selectCategory">Catégorie</Label>
-            <CategorySelect selectedValue={transactionLine.Category.ID} />
-            <div className="gap-3">&nbsp;</div>
-            <Label htmlFor="transactionType">Type</Label>
-            <RadioGroup
-              defaultValue={transactionLine.transaction_type}
-              name="transactionType"
-              className="flex"
-            >
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="income" id="income" />
-                <Label htmlFor="income">Entrant</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="outcome" id="outcome" />
-                <Label htmlFor="outcome">Sortant</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="transfert" id="transfert" />
-                <Label htmlFor="transfert">Transfert</Label>
-              </div>
-            </RadioGroup>
-            <Label htmlFor="selectAccount">Compte</Label>
-            <AccountSelect selectedValue={transactionLine.Account?.ID} />
+            <div className="grid gap-4 py-4">
+              <Label htmlFor="selectCategory">Catégorie</Label>
+              <CategorySelect selectedValue={transactionLine.Category.ID} />
+              <Label htmlFor="transactionType">Type</Label>
+              <RadioGroup
+                defaultValue={transactionLine.transaction_type}
+                name="transactionType"
+                className="flex"
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="income" id="income" />
+                  <Label htmlFor="income">Entrant</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="outcome" id="outcome" />
+                  <Label htmlFor="outcome">Sortant</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="transfert" id="transfert" />
+                  <Label htmlFor="transfert">Transfert</Label>
+                </div>
+              </RadioGroup>
+              <Label htmlFor="selectAccount">Compte</Label>
+              <AccountSelect selectedValue={transactionLine.Account?.ID} />
+            </div>
           </DialogDescription>
           <DialogFooter>
             <DialogClose asChild>
