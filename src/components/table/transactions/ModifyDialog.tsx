@@ -56,10 +56,12 @@ export default function ModifyDialog({
           onSubmit={submitFormModifyRecord}
           action="/api/v1/transaction/update"
         >
-          <DialogDescription>
-            <div className="grid gap-4 py-4">
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="selectCategory">Catégorie</Label>
               <CategorySelect selectedValue={transactionLine.Category.ID} />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="transactionType">Type</Label>
               <RadioGroup
                 defaultValue={transactionLine.transaction_type}
@@ -79,10 +81,12 @@ export default function ModifyDialog({
                   <Label htmlFor="transfert">Transfert</Label>
                 </div>
               </RadioGroup>
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="selectAccount">Compte</Label>
               <AccountSelect selectedValue={transactionLine.Account?.ID} />
             </div>
-          </DialogDescription>
+          </div>
           <DialogFooter>
             <DialogClose asChild>
               <Button variant="outline">Fermer</Button>

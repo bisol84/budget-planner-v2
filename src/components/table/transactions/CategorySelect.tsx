@@ -4,7 +4,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 import { useEffect, useState } from "react";
 
 interface CategorySelectProps {
@@ -12,13 +12,12 @@ interface CategorySelectProps {
 }
 
 interface Category {
-  ID: number; 
-  category: string; 
+  ID: number;
+  category: string;
 }
 
-export default function CategorySelect({selectedValue}: CategorySelectProps) {
-
-  const [categories, setCategories] = useState<Category[]>([])
+export default function CategorySelect({ selectedValue }: CategorySelectProps) {
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
     fetch("/api/v1/categories")
@@ -28,13 +27,15 @@ export default function CategorySelect({selectedValue}: CategorySelectProps) {
 
   return (
     <Select name="selectCategory" defaultValue={selectedValue.toString()}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-[300px]">
         <SelectValue placeholder="Catégorie" />
       </SelectTrigger>
       <SelectContent>
-      {categories.map((category) => (
-        <SelectItem key={category.ID} value={category.ID.toString()}>{category.category}</SelectItem>
-      ))}
+        {categories.map((category) => (
+          <SelectItem key={category.ID} value={category.ID.toString()}>
+            {category.category}
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   );

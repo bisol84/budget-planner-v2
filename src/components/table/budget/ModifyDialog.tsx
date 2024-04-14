@@ -54,12 +54,14 @@ export default function ModifyDialog({
           onSubmit={submitFormModifyRecord}
           action="/api/v1/budget/update"
         >
-          <DialogDescription>
-            <div className="grid gap-4 py-4">
-              <Label htmlFor="inputBudget">Budget</Label>
-              <Input name="inputBudget" defaultValue={budgetLine.amount} />
-            </div>
-          </DialogDescription>
+          <div className="grid gap-4 py-4">
+            <Label htmlFor="inputBudget">Budget</Label>
+            <Input
+              name="inputBudget"
+              defaultValue={budgetLine.amount}
+              className="w-full"
+            />
+          </div>
           <DialogFooter>
             <DialogClose asChild>
               <Button variant="outline">Fermer</Button>

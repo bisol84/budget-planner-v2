@@ -31,7 +31,7 @@ export default function AccountSelect({
 
   return (
     <Select name="selectAccount" defaultValue={selectedValue?.toString()}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-[300px]">
         <SelectValue placeholder="Compte" />
       </SelectTrigger>
       <SelectContent>
