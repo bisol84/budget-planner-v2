@@ -1,6 +1,8 @@
 import { parse } from "papaparse";
 import prisma from "@/db/db";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: Request, res: Response) {
   const formData = await req.formData();
   const file = formData.get("file") as File | null;

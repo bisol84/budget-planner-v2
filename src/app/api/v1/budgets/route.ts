@@ -1,6 +1,8 @@
 import prisma from "@/db/db";
 import { Prisma } from "@prisma/client";
-import dayjs from 'dayjs'
+import dayjs from "dayjs";
+
+export const dynamic = "force-dynamic";
 
 export async function GET(req: Request, res: Response) {
   const currentDate = dayjs().unix();

@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/db/db";
 import dayjs from "dayjs";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: NextRequest, res: NextResponse) {
   // const transactionsTotal = (await getTransactionsTotal())._sum.amount;
   const budgetTotal = (await getBudgetTotal())._sum.amount;

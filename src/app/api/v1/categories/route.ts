@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/db/db";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: NextRequest, res: NextResponse) {
   const result = await prisma.categories.findMany({
     orderBy: [
       {
-        category: 'asc',
+        category: "asc",
       },
     ],
     where: {

@@ -6,18 +6,19 @@ interface IFormData {
   inputBudget: number;
 }
 
-export async function PATCH(req: NextRequest, res: NextResponse) {
+export const dynamic = "force-dynamic";
 
+export async function PATCH(req: NextRequest, res: NextResponse) {
   const formData = await req.formData();
 
   const result = await prisma.budgets.update({
     where: {
-      ID: parseInt(formData.get('budgetID') as string),
+      ID: parseInt(formData.get("budgetID") as string),
     },
     data: {
-      amount: parseInt(formData.get('inputBudget') as string),
+      amount: parseInt(formData.get("inputBudget") as string),
     },
-  })
+  });
 
   return NextResponse.json(result);
 }
