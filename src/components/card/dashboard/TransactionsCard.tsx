@@ -12,7 +12,11 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
-export default function TransactionCard() {
+export default function TransactionCard({
+  transactionDate,
+}: {
+  transactionDate: Date;
+}) {
   const [transactionCard, setTransactionCard] = useState<ITransaction>();
 
   interface ITransaction {
@@ -23,29 +27,29 @@ export default function TransactionCard() {
   }
 
   useEffect(() => {
-    fetch("/api/v1/dashboard/transactions")
+    fetch(`/api/v1/dashboard/transactions/${transactionDate}`)
       .then((response) => response.json())
       .then((data) => setTransactionCard(data));
-  }, []);
+  }, [transactionDate]);
 
   return (
-    <Card className="min-w-64 min-h-48">
+    <Card className="min-w-64 min-h-56">
       <CardHeader>
         <CardTitle>Transactions</CardTitle>
-        <CardDescription>Transactions du mois</CardDescription>
+        <CardDescription>Transactions classées</CardDescription>
       </CardHeader>
       <CardContent>
-        <span>{transactionCard?.total._sum.amount?.toFixed(2)} CHF</span>
+        <span>{transactionCard?.total?.toFixed(2)} CHF</span>
       </CardContent>
       <CardFooter>
         <div className="flex w-full">
           <span className="text-green-500">
             <FontAwesomeIcon icon={faArrowUp} />
-            &nbsp;{transactionCard?.up._sum.amount?.toFixed(2)} CHF
+            &nbsp;{transactionCard?.up?.toFixed(2)} CHF
           </span>
           <span className="text-red-500 m-auto">
             <FontAwesomeIcon icon={faArrowDown} />
-            &nbsp;{transactionCard?.down._sum.amount?.toFixed(2)} CHF
+            &nbsp;{transactionCard?.down?.toFixed(2)} CHF
           </span>
         </div>
       </CardFooter>

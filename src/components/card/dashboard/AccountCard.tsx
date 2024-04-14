@@ -21,13 +21,13 @@ export default function AccountCard({
   accountType,
 }: IAccount) {
   return (
-    <Card className="min-w-64 min-h-48">
+    <Card className="min-w-64 min-h-56">
       <CardHeader>
         <CardTitle>{accountName}</CardTitle>
         <CardDescription>{accountType}</CardDescription>
       </CardHeader>
       <CardContent className="">
-        <span className="text-3xl font-semibold">{accountDescription}</span>
+        <span>{accountDescription}</span>
       </CardContent>
       <CardFooter>
         <p></p>

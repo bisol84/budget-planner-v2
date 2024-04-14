@@ -12,18 +12,18 @@ import {
 import { useState, useEffect } from "react";
 import ModifyDialog from "./ModifyDialog";
 
+interface IBudgetData {
+  ID: number;
+  category: string;
+  parent_category_id: number;
+  amount: number;
+  start_date: Date | null;
+  end_date: Date | null;
+  transactions_amount: number;
+}
+
 export default function BudgetTable({ budgetDate }) {
   const [budgetTable, setBudgetTable] = useState<IBudgetData[]>([]);
-
-  interface IBudgetData {
-    ID: number;
-    category: string;
-    parent_category_id: number;
-    amount: number;
-    start_date: Date | null;
-    end_date: Date | null;
-    transactions_amount: number;
-  }
 
   useEffect(() => {
     fetchBudget(budgetDate);

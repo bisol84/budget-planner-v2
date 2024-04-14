@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { useState, useEffect } from "react";
 
-export default function BudgetCard() {
+export default function BudgetCard({ budgetDate }) {
   const [budgetCard, setBudgetCard] = useState<IBudget>();
 
   interface IBudget {
@@ -18,13 +18,13 @@ export default function BudgetCard() {
   }
 
   useEffect(() => {
-    fetch("/api/v1/dashboard/budgets")
+    fetch(`/api/v1/dashboard/budgets/${budgetDate}`)
       .then((response) => response.json())
       .then((data) => setBudgetCard(data));
-  }, []);
+  }, [budgetDate]);
 
   return (
-    <Card className="min-w-64 min-h-48">
+    <Card className="min-w-64 min-h-56">
       <CardHeader>
         <CardTitle>Budget</CardTitle>
         <CardDescription>Budget net du mois</CardDescription>

@@ -17,10 +17,10 @@ export default function Dashboard() {
       </div>
       <div className="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-4 gap-4">
         <div>
-          <BudgetCard />
+          <BudgetCard budgetDate={date} />
         </div>
         <div>
-          <TransactionCard />
+          <TransactionCard transactionDate={date} />
         </div>
         <div className="col-span-2">
           <AccountsCards />
