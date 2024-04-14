@@ -27,6 +27,7 @@ COPY . .
 # Copy & Run Prisma
 RUN npx prisma generate
 RUN npx prisma migrate deploy
+RUN npx prisma db seed
 # RUN rm -rf prisma
 
 # Next.js collects completely anonymous telemetry data about general usage.
