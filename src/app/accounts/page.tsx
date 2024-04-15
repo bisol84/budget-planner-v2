@@ -1,11 +1,9 @@
 "use client";
 
-import AccountCard from "@/components/card/dashboard/AccountCard";
+import AccountCard from "@/components/card/accounts/AccountCard";
+import AddAccount from "@/components/dialog/AddAccount";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function Accounts() {
   const [accountCard, setAccountCard] = useState<any[]>([]);
@@ -24,9 +22,9 @@ export default function Accounts() {
 
   return (
     <main className="m-4">
-      <div className="flex gap-4 relative">
-        <div>
-          {accountCard.map((account) => (
+      <div className="grid grid-cols-4 gap-2">
+        {accountCard.map((account, index) => (
+          <div key={index} className="max-w-72">
             <AccountCard
               key={account.ID}
               accountID={account.ID}
@@ -34,9 +32,11 @@ export default function Accounts() {
               accountDescription={account.description}
               accountType={account.type}
             />
-          ))}
+          </div>
+        ))}
+        <div>
+          <AddAccount />
         </div>
-        <div>{/* dialog modify */}</div>
       </div>
     </main>
   );
