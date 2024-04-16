@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import AddButton from "../button/AddButton";
 
-export default function AddAccount({ onUpdate }) {
+export default function AddAccount({ onUpdate }: { onUpdate: any }) {
   const submitAddRecord = async (e: any) => {
     e.preventDefault();
     const formURL = e.target.action;
