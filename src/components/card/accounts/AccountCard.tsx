@@ -37,7 +37,7 @@ export default function AccountCard({
   };
 
   return (
-    <Card className="min-w-64 min-h-56 h-full">
+    <Card className="min-w-64 min-h-56 h-full relative">
       <CardHeader>
         <CardTitle>{accountName}</CardTitle>
         <CardDescription>{accountType}</CardDescription>
@@ -45,8 +45,8 @@ export default function AccountCard({
       <CardContent>
         <span>{accountDescription}</span>
       </CardContent>
-      <CardFooter className="relative h-full">
-        <div className="absolute space-x-2 right-4 top-10">
+      <CardFooter className="h-full">
+        <div className="absolute bottom-0 right-0 mb-4 mr-4 space-x-2">
           <ModifyAccount />
           <DeleteButton onClick={() => handleDelete(accountID)} />
         </div>
