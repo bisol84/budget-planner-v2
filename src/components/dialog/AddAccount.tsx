@@ -41,7 +41,7 @@ export default function AddAccount({ onUpdate }: { onUpdate: any }) {
         <form
           name="updateAccount"
           onSubmit={submitAddRecord}
-          action="/api/v1/account/update"
+          action="/api/v1/account/create"
         >
           <div className="grid gap-4 py-4">
             <Label htmlFor="inputAccountName">Compte</Label>
