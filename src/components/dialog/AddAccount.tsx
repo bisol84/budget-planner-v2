@@ -11,7 +11,8 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import AddButton from "../button/AddButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function AddAccount({ onUpdate }: { onUpdate: any }) {
   const submitAddRecord = async (e: any) => {
@@ -31,8 +32,10 @@ export default function AddAccount({ onUpdate }: { onUpdate: any }) {
 
   return (
     <Dialog>
-      <DialogTrigger>
-        <AddButton />
+      <DialogTrigger asChild>
+        <Button variant="outline">
+          <FontAwesomeIcon icon={faPlus} />
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader className="flex flex-col gap-1">

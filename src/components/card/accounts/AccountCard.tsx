@@ -27,7 +27,6 @@ export default function AccountCard({
   onUpdate,
 }: IAccount) {
   const handleDelete = async (accountID: string) => {
-    console.log(`Supression : ${accountID}`);
     const response = await fetch(`/api/v1/account/delete/${accountID}`, {
       method: "DELETE",
     });
@@ -47,7 +46,13 @@ export default function AccountCard({
       </CardContent>
       <CardFooter className="h-full">
         <div className="absolute bottom-0 right-0 mb-4 mr-4 space-x-2">
-          <ModifyAccount />
+          <ModifyAccount
+            accountID={accountID}
+            accountName={accountName}
+            accountDescription={accountDescription}
+            accountType={""}
+            onUpdate={onUpdate}
+          />
           <DeleteButton onClick={() => handleDelete(accountID)} />
         </div>
       </CardFooter>

@@ -8,13 +8,14 @@ import {
   DialogClose,
   DialogFooter,
 } from "@/components/ui/dialog";
-import ModifyButton from "../../button/ModifyButton";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import CategorySelect from "./CategorySelect";
 import AccountSelect from "./AccountSelect";
 import type { ITransactions } from "./TransactionsTable";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 interface ModifyDialogProps {
   transactionLine: ITransactions;
@@ -44,8 +45,10 @@ export default function ModifyDialog({
 
   return (
     <Dialog>
-      <DialogTrigger>
-        <ModifyButton />
+      <DialogTrigger asChild>
+        <Button variant="outline">
+          <FontAwesomeIcon icon={faPenToSquare} className="cursor-pointer" />
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader className="flex flex-col gap-1">

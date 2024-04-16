@@ -8,39 +8,84 @@ import {
   DialogClose,
   DialogFooter,
 } from "@/components/ui/dialog";
-import ModifyButton from "../button/ModifyButton";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
-export default function ModifyAccount() {
+interface IAccount {
+  accountName: string;
+  accountDescription: string;
+  accountType: string;
+  accountID: string;
+  onUpdate: any;
+}
+
+export default function ModifyAccount({
+  accountID,
+  accountName,
+  accountDescription,
+  accountType,
+  onUpdate,
+}: IAccount) {
+  const submitFormModifyRecord = async (e: any) => {
+    e.preventDefault();
+    const formURL = e.target.action;
+    const formData = new FormData(e.target);
+    formData.set("accountID", accountID);
+
+    const response = await fetch(formURL, {
+      method: "PATCH",
+      body: formData,
+    });
+
+    if (response.ok) {
+      onUpdate();
+    }
+  };
+
   return (
     <Dialog>
-      <DialogTrigger>
-        <ModifyButton />
+      <DialogTrigger asChild>
+        <Button variant="outline">
+          <FontAwesomeIcon icon={faPenToSquare} className="cursor-pointer" />
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader className="flex flex-col gap-1">
           Modifier le compte
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <Label htmlFor="inputAccount">Compte</Label>
-          {/* <Input
-              name="inputBudget"
-              defaultValue={budgetLine.amount}
+        <form
+          name="updateAccount"
+          onSubmit={submitFormModifyRecord}
+          action="/api/v1/account/update"
+        >
+          <div className="grid gap-4 py-4">
+            <Label htmlFor="inputAccount">Compte</Label>
+            <Input
+              name="inputAccountName"
+              defaultValue={accountName}
               className="w-full"
-            /> */}
-        </div>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="outline">Fermer</Button>
-          </DialogClose>
-          <DialogClose asChild>
-            <Button type="submit" variant="outline">
-              Envoyer
-            </Button>
-          </DialogClose>
-        </DialogFooter>
+            />
+            <Label htmlFor="inputAccount">Description</Label>
+            <Input
+              name="inputAccountDescription"
+              defaultValue={accountDescription}
+              className="w-full"
+            />
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Fermer</Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button type="submit" variant="outline">
+                Envoyer
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </form>
       </DialogContent>
     </Dialog>
   );

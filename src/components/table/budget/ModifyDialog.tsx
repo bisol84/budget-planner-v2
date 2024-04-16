@@ -8,11 +8,12 @@ import {
   DialogClose,
   DialogFooter,
 } from "@/components/ui/dialog";
-import ModifyButton from "../../button/ModifyButton";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import type { IBudgetData } from "./BudgetTable";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 interface ModifyBudgetDialogProps {
   budgetLine: IBudgetData;
@@ -42,8 +43,10 @@ export default function ModifyDialog({
 
   return (
     <Dialog>
-      <DialogTrigger>
-        <ModifyButton />
+      <DialogTrigger asChild>
+        <Button variant="outline">
+          <FontAwesomeIcon icon={faPenToSquare} className="cursor-pointer" />
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader className="flex flex-col gap-1">

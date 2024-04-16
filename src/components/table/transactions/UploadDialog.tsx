@@ -10,9 +10,11 @@ import {
   DialogClose,
   DialogFooter,
 } from "@/components/ui/dialog";
-import UploadButton from "./UploadButton";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 export default function UploadDialog() {
   const [file, setFile] = useState(null);
@@ -39,8 +41,10 @@ export default function UploadDialog() {
 
   return (
     <Dialog>
-      <DialogTrigger>
-        <UploadButton />
+      <DialogTrigger asChild>
+        <Button variant="outline">
+          <FontAwesomeIcon icon={faCloudArrowUp} />
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader className="flex flex-col gap-1">
