@@ -16,6 +16,7 @@ interface IAccount {
   accountDescription: string;
   accountType: string;
   accountID: string;
+  onUpdate: any;
 }
 
 export default function AccountCard({
@@ -23,7 +24,18 @@ export default function AccountCard({
   accountDescription,
   accountType,
   accountID,
+  onUpdate,
 }: IAccount) {
+  const handleDelete = async (accountID: string) => {
+    console.log(`Supression : ${accountID}`);
+    const response = await fetch(`/api/v1/account/delete/${accountID}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      onUpdate();
+    }
+  };
+
   return (
     <Card className="min-w-64 min-h-56 h-full">
       <CardHeader>
@@ -36,7 +48,7 @@ export default function AccountCard({
       <CardFooter className="relative h-full">
         <div className="absolute space-x-2 right-4 top-10">
           <ModifyAccount />
-          <DeleteButton />
+          <DeleteButton onClick={() => handleDelete(accountID)} />
         </div>
       </CardFooter>
     </Card>

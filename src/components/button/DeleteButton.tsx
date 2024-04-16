@@ -8,12 +8,8 @@ interface DeleteButtonProps {
 
 export default function DeleteButton({ onClick }: DeleteButtonProps) {
   return (
-    <Button variant="outline">
-      <FontAwesomeIcon
-        icon={faTrash}
-        onClick={onClick}
-        className="cursor-pointer"
-      />
+    <Button variant="outline" onClick={onClick}>
+      <FontAwesomeIcon icon={faTrash} className="cursor-pointer" />
     </Button>
   );
 }

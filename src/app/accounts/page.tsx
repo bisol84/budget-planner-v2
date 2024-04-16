@@ -31,11 +31,12 @@ export default function Accounts() {
               accountName={account.name}
               accountDescription={account.description}
               accountType={account.type}
+              onUpdate={fetchAccount}
             />
           </div>
         ))}
         <div>
-          <AddAccount />
+          <AddAccount onUpdate={fetchAccount} />
         </div>
       </div>
     </main>

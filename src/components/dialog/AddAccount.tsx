@@ -13,24 +13,22 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import AddButton from "../button/AddButton";
 
-const submitAddRecord = async (e: any) => {
-  e.preventDefault();
-  const formURL = e.target.action;
-  const formData = new FormData(e.target);
-  // const formBudget = formData.get("inputBudget");
-  // formData.set("budgetID", budgetLine.ID);
+export default function AddAccount({ onUpdate }) {
+  const submitAddRecord = async (e: any) => {
+    e.preventDefault();
+    const formURL = e.target.action;
+    const formData = new FormData(e.target);
 
-  const response = await fetch(formURL, {
-    method: "POST",
-    body: formData,
-  });
+    const response = await fetch(formURL, {
+      method: "POST",
+      body: formData,
+    });
 
-  if (response.ok) {
-    //onBudgetUpdated();
-  }
-};
+    if (response.ok) {
+      onUpdate();
+    }
+  };
 
-export default function AddAccount() {
   return (
     <Dialog>
       <DialogTrigger>
