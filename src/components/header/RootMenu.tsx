@@ -72,38 +72,40 @@ export default function RootMenu({ className }: { className: string }) {
         <PopoverTrigger asChild>
           <Button
             variant="outline"
-            onClick={() => setDisplayMenu(!displayMenu)}
+            onClick={() => setDisplayMenu(true)}
             className="block sm:hidden md:hidden"
           >
             <FontAwesomeIcon icon={faBars} />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-auto">
-          <div className="grid gap-4">
-            <div className="grid gap-2">
-              <div>
-                <Link href="/dashboard" legacyBehavior passHref>
-                  Tableau de bord
-                </Link>
-              </div>
-              <div>
-                <Link href="/budget" legacyBehavior passHref>
-                  Budget
-                </Link>
-              </div>
-              <div>
-                <Link href="/accounts" legacyBehavior passHref>
-                  Comptes
-                </Link>
-              </div>
-              <div>
-                <Link href="/transactions" legacyBehavior passHref>
-                  Transactions
-                </Link>
+        {displayMenu && (
+          <PopoverContent className="w-auto">
+            <div className="grid gap-4">
+              <div className="grid gap-2">
+                <Button variant="outline" onClick={() => setDisplayMenu(false)}>
+                  <Link href="/dashboard" legacyBehavior passHref>
+                    Tableau de bord
+                  </Link>
+                </Button>
+                <Button variant="outline" onClick={() => setDisplayMenu(false)}>
+                  <Link href="/budget" legacyBehavior passHref>
+                    Budget
+                  </Link>
+                </Button>
+                <Button variant="outline" onClick={() => setDisplayMenu(false)}>
+                  <Link href="/accounts" legacyBehavior passHref>
+                    Comptes
+                  </Link>
+                </Button>
+                <Button variant="outline" onClick={() => setDisplayMenu(false)}>
+                  <Link href="/transactions" legacyBehavior passHref>
+                    Transactions
+                  </Link>
+                </Button>
               </div>
             </div>
-          </div>
-        </PopoverContent>
+          </PopoverContent>
+        )}
       </Popover>
     </>
   );

@@ -24,7 +24,7 @@ export default function BudgetCard({ budgetDate }: { budgetDate: Date }) {
   }, [budgetDate]);
 
   return (
-    <Card className="min-w-64 min-h-56">
+    <Card className="min-w-12 min-h-56">
       <CardHeader>
         <CardTitle>Budget</CardTitle>
         <CardDescription>Budget net du mois</CardDescription>

@@ -38,7 +38,7 @@ export default function AccountsCards() {
       <div className="overflow-hidden relative">
         <div
           className="flex gap-4 transition-transform ease-out duration-500"
-          style={{ transform: `translateX(-${current * 40}%)` }}
+          style={{ transform: `translateX(-${current * 30}%)` }}
         >
           {accountCard.map((account) => (
             <AccountCard

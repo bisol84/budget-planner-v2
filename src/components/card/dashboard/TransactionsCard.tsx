@@ -33,7 +33,7 @@ export default function TransactionCard({
   }, [transactionDate]);
 
   return (
-    <Card className="min-w-64 min-h-56">
+    <Card className="min-w-12 min-h-56">
       <CardHeader>
         <CardTitle>Transactions</CardTitle>
         <CardDescription>Transactions classées</CardDescription>

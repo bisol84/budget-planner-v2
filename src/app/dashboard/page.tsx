@@ -15,7 +15,7 @@ export default function Dashboard() {
       <div className="mb-2">
         <DatePicker date={date} handleUpdate={setDate} />
       </div>
-      <div className="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4">
         <div>
           <BudgetCard budgetDate={date} />
         </div>

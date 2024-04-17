@@ -36,7 +36,7 @@ export default function AccountCard({
   };
 
   return (
-    <Card className="min-w-64 min-h-56 h-full relative">
+    <Card className="min-w-18 min-h-56 h-full relative">
       <CardHeader>
         <CardTitle>{accountName}</CardTitle>
         <CardDescription>{accountType}</CardDescription>

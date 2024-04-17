@@ -23,7 +23,7 @@ export default function AccountCard({
   accountID,
 }: IAccount) {
   return (
-    <Card className="min-w-64 min-h-56">
+    <Card className="min-w-18 min-h-56">
       <CardHeader>
         <CardTitle>{accountName}</CardTitle>
         <CardDescription>{accountType}</CardDescription>
