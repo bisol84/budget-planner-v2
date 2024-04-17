@@ -62,7 +62,7 @@ export default function RootMenu({ className }: { className: string }) {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <div className="flex invisible sm:visible md:visible">
+      <div className="flex invisible sm:visible md:visible mr-2">
         <ModeToggle />
         <ConfigMenu />
       </div>
@@ -73,7 +73,7 @@ export default function RootMenu({ className }: { className: string }) {
           <Button
             variant="outline"
             onClick={() => setDisplayMenu(true)}
-            className="block sm:hidden md:hidden"
+            className="block sm:hidden md:hidden mr-2"
           >
             <FontAwesomeIcon icon={faBars} />
           </Button>
